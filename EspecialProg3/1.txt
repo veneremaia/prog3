@@ -1,0 +1,20 @@
+ACEPTADAS (tanto para MATCH SIMPLE como MATCH FULL) :
+ 
+INSERT INTO estanteria (nro_estanteria, nombre_estanteria) VALUES ('1', 'AZUL')
+INSERT INTO estanteria (nro_estanteria, nombre_estanteria) VALUES ('2', 'ROJO')
+INSERT INTO fila (nro_estanteria, nro_fila, nombre_fila, peso_max_kg) VALUES ('1', '1', 'A', '500.00')
+INSERT INTO posicion(pos_global, nro_posicion, nro_estanteria, nro_fila, tipo) VALUES('1','1', '1', '1', 'comida')
+
+UPDATE ACEPTADAS (tanto para MATCH SIMPLE como MATCH FULL) :
+
+UPDATE posicion SET nro_estanteria='2' WHERE pos_global= '1';
+
+Esta operacion procede ya que ninguna de las columnas de las FK son null y existe una tupla en la tabla referenciada cuyos valores de clave coinciden con los de tales columnas
+La tabla afectada es POSICION y quedara: pos_global= '1', nro_posicion='1',nro_estanteria='2', tipo='comida'
+
+
+UPDATE RECHAZADAS(tanto para MATCH SIMPLE como MATCH FULL) :
+
+UPDATE posicion SET nro_estanteria='3' WHERE pos_global= '1';
+
+Esta operacion no procede, ya que no existe la tupla nro_fila='1' y nro_estanteria='3' en la tabla FILA, y no existe ningun nro_estanteria='3' en la tabla estanteria
